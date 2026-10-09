@@ -135,6 +135,7 @@ a { color: var(--cyan); }
 .stats dt { color: var(--cyan); text-transform: uppercase; }
 .stats dd { margin: 0; }
 .stats .soon { color: var(--yellow); }
+.stats .ready { color: var(--green); }
 
 .placeholder { display: grid; place-items: center; background: repeating-linear-gradient(45deg, #15122e 0 12px, #1b1740 12px 24px); }
 .placeholder img { width: 92px; height: auto; }
