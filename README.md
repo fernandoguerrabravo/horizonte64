@@ -1,6 +1,6 @@
-# Horizonte64 — sitio web
+# Horizonte 64 Software — sitio web
 
-Sitio estático (HTML + CSS) del estudio Horizonte64, pensado para GitHub Pages.
+Sitio estático (HTML + CSS) del estudio Horizonte 64 Software (basado en el kit de marca de ~/Documents/horizonte64_assets_web), pensado para GitHub Pages.
 
 ## Estructura
 

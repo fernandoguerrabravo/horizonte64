@@ -3,82 +3,131 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Horizonte64 — Juegos retro</title>
-  <meta name="description" content="Horizonte64 es un estudio independiente de videojuegos retro con alma arcade. Juega gratis en tu navegador.">
-  <meta property="og:title" content="Horizonte64 — Juegos retro">
-  <meta property="og:description" content="Juegos retro con alma arcade. Juega gratis en tu navegador.">
-  <meta property="og:image" content="img/horizonte64-logo.webp">
+  <title>Horizonte 64 Software — Juegos hechos en LATAM</title>
+  <meta name="description" content="Horizonte 64 Software es un estudio independiente de videojuegos retro hechos en Latinoamérica. Juega gratis en tu navegador.">
+  <meta property="og:title" content="Horizonte 64 Software">
+  <meta property="og:description" content="Juegos hechos en LATAM. Juega gratis en tu navegador.">
+  <meta property="og:image" content="img/brand/logo.png">
   <link rel="icon" type="image/png" href="img/favicon.png">
+  <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Press+Start+2P&family=Rajdhani:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
   <header class="topbar">
-    <a class="brand" href="#inicio">HORIZONTE<span>64</span></a>
+    <a class="brand" href="#inicio">
+      <img src="img/brand/isotipo.png" alt="" width="141" height="144">
+      <span>HORIZONTE <b>64</b></span>
+    </a>
     <nav>
       <a href="#juegos">Juegos</a>
-      <a href="#estudio">Estudio</a>
+      <a href="#nosotros">Nosotros</a>
     </nav>
   </header>
 
   <main>
-    <!-- Portada con el logo y el horizonte synthwave -->
+    <!-- Portada -->
     <section id="inicio" class="hero">
-      <img class="hero-logo" src="img/horizonte64-logo.webp" alt="Horizonte64" width="1360" height="768">
-      <p class="tagline">Juegos retro con alma arcade</p>
-      <a class="btn" href="#juegos">Ver juegos</a>
-      <div class="grid-floor" aria-hidden="true"></div>
+      <div class="hero-text">
+        <h1><img class="hero-logo" src="img/brand/logo.png" alt="Horizonte 64 Software — Juegos hechos en LATAM" width="462" height="237"></h1>
+        <a class="btn btn-blue" href="#juegos">Conoce nuestros juegos <span aria-hidden="true">&gt;</span></a>
+      </div>
+
+      <div class="window hero-window">
+        <div class="window-bar">
+          <span>HORIZONTE 64</span>
+          <span class="window-buttons" aria-hidden="true"><i></i><i></i><i>×</i></span>
+        </div>
+        <img class="pixel" src="img/brand/banner-paisaje.png" alt="Paisaje pixel art: sol de atardecer sobre montañas y una playa con un héroe y un cofre" width="336" height="212">
+      </div>
     </section>
 
-    <!-- Catálogo de juegos: para agregar uno nuevo, copia un <article class="game"> -->
+    <div class="stripes" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+
+    <!-- Catálogo de juegos: para agregar uno, copia un <article class="window game"> -->
     <section id="juegos" class="section">
-      <h2 class="section-title">Juegos</h2>
+      <h2 class="section-title"><img class="pixel" src="img/brand/icon-jugar.png" alt="" width="56" height="61"> Juegos</h2>
 
       <div class="games">
-        <article class="game">
+        <article class="window game">
+          <div class="window-bar">
+            <span>INFERNO.EXE</span>
+            <span class="window-buttons" aria-hidden="true"><i></i><i></i><i>×</i></span>
+          </div>
           <a class="game-cover" href="juegos/inferno/">
             <img src="img/inferno-cover.webp" alt="Un avión vuela sobre un mar de lava hacia un volcán" loading="lazy" width="768" height="1360">
             <img class="game-logo" src="img/inferno-logo.webp" alt="INFERNO" loading="lazy">
-            <span class="badge">Próximamente</span>
           </a>
-          <div class="game-info">
-            <p class="game-meta">Shoot 'em up vertical · 1 jugador</p>
+          <div class="game-body">
+            <dl class="stats">
+              <div><dt>Género</dt><dd>Shooter vertical</dd></div>
+              <div><dt>Jugadores</dt><dd>01</dd></div>
+              <div><dt>Estado</dt><dd class="soon">Próximamente</dd></div>
+            </dl>
             <p>1945. Un volcán despierta y de la lava surge una flota invasora. Pilota el último avión del escuadrón y vuela directo al infierno.</p>
-            <ul class="tags">
-              <li>Arcade</li><li>Shooter</li><li>Pixel art</li>
-            </ul>
-            <a class="btn btn-small" href="juegos/inferno/">Jugar</a>
+            <a class="btn btn-blue" href="juegos/inferno/">Jugar <span aria-hidden="true">&gt;</span></a>
           </div>
         </article>
 
-        <article class="game game-soon">
-          <div class="game-cover placeholder">
-            <span class="placeholder-text">?</span>
+        <article class="window game game-next">
+          <div class="window-bar">
+            <span>PROXIMO.EXE</span>
+            <span class="window-buttons" aria-hidden="true"><i></i><i></i><i>×</i></span>
           </div>
-          <div class="game-info">
-            <p class="game-meta">En desarrollo</p>
+          <div class="game-cover placeholder">
+            <img class="pixel bob" src="img/brand/sprite-heroe.png" alt="" width="46" height="63">
+          </div>
+          <div class="game-body">
             <p>Nuestro próximo juego ya se está cocinando.</p>
+            <div class="loading">
+              <span>Cargando</span>
+              <div class="bar"><div></div></div>
+              <span>64%</span>
+            </div>
           </div>
         </article>
       </div>
     </section>
 
-    <section id="estudio" class="section studio">
-      <h2 class="section-title">Estudio</h2>
-      <div class="studio-body">
-        <img src="img/inferno-piloto.webp" alt="Piloto corriendo hacia su avión en una pista en llamas" loading="lazy" width="768" height="1360">
-        <div>
-          <p><strong>Horizonte64</strong> es un estudio independiente que crea videojuegos inspirados en las máquinas arcade y las consolas de los 80 y 90.</p>
-          <p>Hacemos juegos cortos, intensos y directos: mete una moneda, pulsa start y a jugar. Todos se pueden jugar gratis desde el navegador.</p>
+    <!-- Estudio -->
+    <section id="nosotros" class="section">
+      <h2 class="section-title"><img class="pixel" src="img/brand/icon-retro.png" alt="" width="81" height="52"> Nosotros</h2>
+
+      <div class="window window-cream about">
+        <div class="window-bar"><span>SOBRE NOSOTROS</span></div>
+        <div class="about-body">
+          <p><strong>Horizonte 64 Software</strong> es un estudio independiente de videojuegos hecho en Latinoamérica.</p>
+          <p>Creamos juegos inspirados en las máquinas arcade y en los computadores de los 80 y 90: cortos, intensos y directos. Mete una moneda, pulsa start y a jugar.</p>
+          <p>Todos nuestros juegos se pueden jugar gratis desde el navegador.</p>
         </div>
+      </div>
+
+      <div class="sprites" aria-hidden="true">
+        <img class="pixel bob" src="img/brand/sprite-heroe.png" alt="" width="46" height="63">
+        <img class="pixel bob" src="img/brand/sprite-nave.png" alt="" width="59" height="63">
+        <img class="pixel bob" src="img/brand/sprite-robot.png" alt="" width="60" height="56">
+        <img class="pixel bob" src="img/brand/sprite-tanque.png" alt="" width="73" height="42">
+        <img class="pixel bob" src="img/brand/sprite-moneda.png" alt="" width="35" height="36">
+        <img class="pixel bob" src="img/brand/sprite-llave.png" alt="" width="43" height="44">
+        <img class="pixel bob" src="img/brand/sprite-gema.png" alt="" width="44" height="36">
+        <img class="pixel bob" src="img/brand/sprite-corazon.png" alt="" width="41" height="36">
       </div>
     </section>
   </main>
 
   <footer class="footer">
-    <p>© <span id="year">2026</span> Horizonte64</p>
+    <div class="footer-inner">
+      <img class="footer-logo" src="img/brand/logo.png" alt="Horizonte 64 Software" width="462" height="237">
+      <nav class="footer-links" aria-label="Enlaces">
+        <h3>Enlaces</h3>
+        <a href="#juegos">Juegos</a>
+        <a href="#nosotros">Sobre nosotros</a>
+      </nav>
+    </div>
+    <p class="copyright">© <span id="year">2026</span> Horizonte 64 Software<br>Hecho en LATAM con 8 bits y café</p>
+    <div class="stripes" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
   </footer>
 
   <script>document.getElementById('year').textContent = new Date().getFullYear();</script>

@@ -3,28 +3,41 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>INFERNO — Horizonte64</title>
+  <title>INFERNO — Horizonte 64 Software</title>
   <link rel="icon" type="image/png" href="../../img/favicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Press+Start+2P&family=Rajdhani:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../../css/style.css">
   <style>
-    .soon { min-height: 80vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 24px; padding: 40px 16px; }
-    .soon img { width: min(560px, 90vw); }
-    .soon p { font-family: "Press Start 2P", monospace; font-size: 14px; color: var(--yellow); }
+    .soon-page { min-height: 70vh; display: grid; place-items: center; padding: 40px 16px; }
+    .soon-page .window { max-width: 620px; width: 100%; }
+    .soon-page .body { padding: 28px 24px; display: flex; flex-direction: column; align-items: center; gap: 22px; text-align: center; }
+    .soon-page .body img { width: min(460px, 100%); }
+    .soon-page .body p { margin: 0; font-family: var(--pixel); font-size: 13px; color: var(--yellow); }
   </style>
 </head>
 <body>
   <header class="topbar">
-    <a class="brand" href="../../">HORIZONTE<span>64</span></a>
+    <a class="brand" href="../../">
+      <img src="../../img/brand/isotipo.png" alt="" width="141" height="144">
+      <span>HORIZONTE <b>64</b></span>
+    </a>
     <nav><a href="../../#juegos">Juegos</a></nav>
   </header>
   <!-- Aquí irá el build WebGL de Unity -->
-  <main class="soon">
-    <img src="../../img/inferno-logo.webp" alt="INFERNO">
-    <p>PRÓXIMAMENTE</p>
-    <a class="btn btn-small" href="../../#juegos">Volver</a>
+  <main class="soon-page">
+    <div class="window">
+      <div class="window-bar">
+        <span>INFERNO.EXE</span>
+        <span class="window-buttons" aria-hidden="true"><i></i><i></i><i>×</i></span>
+      </div>
+      <div class="body">
+        <img src="../../img/inferno-logo.webp" alt="INFERNO">
+        <p>PRÓXIMAMENTE</p>
+        <a class="btn btn-blue" href="../../#juegos">Volver <span aria-hidden="true">&gt;</span></a>
+      </div>
+    </div>
   </main>
 </body>
 </html>
