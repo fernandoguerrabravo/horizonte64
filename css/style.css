@@ -1,0 +1,150 @@
+/* Horizonte64 — estilo synthwave */
+:root {
+  --bg: #07030f;
+  --bg-2: #120826;
+  --panel: #160b2e;
+  --text: #ece6ff;
+  --muted: #a99bc9;
+  --cyan: #46e6ff;
+  --pink: #ff3fa4;
+  --orange: #ff8a1f;
+  --yellow: #ffd23f;
+  --purple: #8a2be2;
+  --radius: 14px;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Rajdhani", system-ui, sans-serif;
+  font-size: 19px;
+  line-height: 1.55;
+}
+img { max-width: 100%; display: block; }
+a { color: var(--cyan); }
+
+/* --- Barra superior --- */
+.topbar {
+  position: sticky; top: 0; z-index: 10;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px clamp(16px, 4vw, 48px);
+  background: rgba(7, 3, 15, 0.8);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(138, 43, 226, 0.35);
+}
+.brand {
+  font-family: "Orbitron", sans-serif; font-weight: 900; letter-spacing: 2px;
+  color: var(--text); text-decoration: none; font-size: 20px;
+}
+.brand span { color: var(--pink); }
+.topbar nav { display: flex; gap: clamp(14px, 3vw, 32px); }
+.topbar nav a {
+  font-family: "Orbitron", sans-serif; font-size: 14px; letter-spacing: 1px;
+  color: var(--muted); text-decoration: none; text-transform: uppercase;
+}
+.topbar nav a:hover { color: var(--cyan); }
+
+/* --- Portada --- */
+.hero {
+  position: relative; overflow: hidden;
+  min-height: 92vh;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  padding: 60px 16px 180px;
+  text-align: center;
+  background: radial-gradient(ellipse at 50% 85%, #3a0c5c 0%, var(--bg-2) 45%, var(--bg) 75%);
+}
+
+.hero-logo {
+  position: relative;
+  width: min(720px, 92vw); height: auto;
+  mix-blend-mode: screen; /* el fondo negro del logo desaparece */
+}
+.tagline {
+  position: relative;
+  font-family: "Press Start 2P", monospace; font-size: clamp(11px, 2.2vw, 16px);
+  color: var(--cyan); margin: 8px 0 28px;
+  text-shadow: 0 0 10px rgba(70, 230, 255, 0.6);
+}
+.grid-floor {
+  position: absolute; left: -50%; right: -50%; bottom: 0; height: 200px;
+  background-image:
+    linear-gradient(rgba(190, 70, 255, 0.8) 2px, transparent 2px),
+    linear-gradient(90deg, rgba(190, 70, 255, 0.8) 2px, transparent 2px);
+  background-size: 60px 40px;
+  transform: perspective(300px) rotateX(60deg);
+  transform-origin: bottom;
+  animation: grid-move 1.2s linear infinite;
+  -webkit-mask: linear-gradient(to top, #000 30%, transparent);
+          mask: linear-gradient(to top, #000 30%, transparent);
+}
+@keyframes grid-move { to { background-position: 0 40px; } }
+@media (prefers-reduced-motion: reduce) { .grid-floor { animation: none; } }
+
+/* --- Botones --- */
+.btn {
+  position: relative; display: inline-block;
+  font-family: "Orbitron", sans-serif; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+  font-size: 15px; color: #160b2e; text-decoration: none;
+  padding: 14px 30px; border-radius: 999px;
+  background: linear-gradient(90deg, var(--yellow), var(--orange), var(--pink));
+  box-shadow: 0 0 22px rgba(255, 63, 164, 0.45);
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+.btn:hover { transform: translateY(-2px); box-shadow: 0 0 32px rgba(255, 63, 164, 0.7); }
+.btn-small { font-size: 13px; padding: 10px 22px; }
+
+/* --- Secciones --- */
+.section { max-width: 1100px; margin: 0 auto; padding: 80px 16px; }
+.section-title {
+  font-family: "Orbitron", sans-serif; font-weight: 900; font-size: clamp(28px, 5vw, 44px);
+  letter-spacing: 3px; text-transform: uppercase; margin: 0 0 36px;
+  background: linear-gradient(90deg, var(--cyan), var(--purple), var(--pink));
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+
+/* --- Catálogo de juegos --- */
+.games { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 28px; }
+.game {
+  background: var(--panel); border-radius: var(--radius); overflow: hidden;
+  border: 1px solid rgba(138, 43, 226, 0.35);
+  display: flex; flex-direction: column;
+  transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+}
+.game:hover { transform: translateY(-4px); border-color: var(--pink); box-shadow: 0 10px 40px rgba(255, 63, 164, 0.2); }
+.game-cover { position: relative; display: block; aspect-ratio: 4 / 3; overflow: hidden; background: #000; }
+.game-cover > img:first-child { width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; transition: transform 0.4s; }
+.game:hover .game-cover > img:first-child { transform: scale(1.05); }
+.game-logo {
+  position: absolute; left: 50%; bottom: 14px; transform: translateX(-50%);
+  width: 78%; filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.8));
+}
+.badge {
+  position: absolute; top: 12px; right: 12px;
+  font-family: "Press Start 2P", monospace; font-size: 9px;
+  background: var(--yellow); color: #160b2e; padding: 7px 9px; border-radius: 6px;
+}
+.game-info { padding: 20px 22px 24px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
+.game-info p { margin: 0; }
+.game-info .btn { align-self: flex-start; margin-top: auto; }
+.game-meta { font-family: "Orbitron", sans-serif; font-size: 13px; color: var(--cyan); letter-spacing: 1px; text-transform: uppercase; }
+.tags { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; padding: 0; margin: 4px 0 8px; }
+.tags li { font-size: 14px; color: var(--muted); border: 1px solid rgba(169, 155, 201, 0.35); border-radius: 999px; padding: 2px 12px; }
+
+.placeholder { display: grid; place-items: center; background: repeating-linear-gradient(45deg, #120826 0 14px, #1a0d36 14px 28px); }
+.placeholder-text { font-family: "Press Start 2P", monospace; font-size: 64px; color: rgba(169, 155, 201, 0.4); }
+.game-soon { opacity: 0.75; }
+
+/* --- Estudio --- */
+.studio-body { display: grid; grid-template-columns: minmax(0, 260px) 1fr; gap: 36px; align-items: center; }
+.studio-body img { width: 100%; height: auto; border-radius: var(--radius); aspect-ratio: 3 / 4; object-fit: cover; border: 1px solid rgba(138, 43, 226, 0.35); }
+.studio-body p { margin: 0 0 16px; font-size: 21px; }
+@media (max-width: 640px) {
+  .studio-body { grid-template-columns: 1fr; }
+  .studio-body img { max-width: 260px; }
+}
+
+/* --- Pie --- */
+.footer { text-align: center; padding: 40px 16px; color: var(--muted); border-top: 1px solid rgba(138, 43, 226, 0.25); }
