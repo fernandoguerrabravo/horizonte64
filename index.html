@@ -153,43 +153,14 @@
       document.addEventListener("visibilitychange", play);
       v.addEventListener("pause", function () { setTimeout(play, 300); });
 
-      // Sonido del mar: intenta sonar al cargar; si el navegador lo bloquea,
-      // se activa en la primera interacción (clic, toque o tecla) en cualquier parte.
-      // Si el visitante lo silencia, se recuerda para próximas visitas.
+      // Sonido del mar: apagado por defecto; solo suena si el visitante pulsa el botón.
       var b = document.querySelector(".hero-window .sonido");
-      var KEY = "h64-sonido";
-      function pref() { try { return localStorage.getItem(KEY); } catch (e) { return null; } }
-      function savePref(val) { try { localStorage.setItem(KEY, val); } catch (e) {} }
-      function render() {
-        if (!b) return;
+      if (b) b.addEventListener("click", function () {
+        v.muted = !v.muted;
+        if (!v.muted) { v.volume = 0.6; play(); }
         b.setAttribute("aria-pressed", String(!v.muted));
         b.firstChild.nodeValue = v.muted ? "🔈 " : "🔊 ";
         b.title = v.muted ? "Escuchar el mar" : "Silenciar";
-      }
-      function unmute() {
-        v.muted = false; v.volume = 0.6;
-        var p = v.play();
-        if (p && p.catch) p.catch(function () { v.muted = true; render(); });
-        render();
-      }
-      var events = ["pointerdown", "keydown", "touchstart"];
-      function firstInteraction(e) {
-        events.forEach(function (n) { document.removeEventListener(n, firstInteraction, true); });
-        if (b && b.contains(e.target)) return;   // el botón se encarga solo
-        if (v.muted && pref() !== "off") unmute();
-      }
-      if (pref() !== "off") {
-        v.muted = false; v.volume = 0.6;
-        var p = v.play();
-        if (p && p.catch) p.catch(function () {
-          v.muted = true; v.play().catch(function () {}); render();
-          events.forEach(function (n) { document.addEventListener(n, firstInteraction, true); });
-        });
-        render();
-      }
-      if (b) b.addEventListener("click", function () {
-        if (v.muted) { unmute(); savePref("on"); }
-        else { v.muted = true; savePref("off"); render(); }
       });
     })();
   </script>
