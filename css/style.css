@@ -50,9 +50,12 @@ a { color: var(--cyan); }
 .brand span { font-family: var(--pixel); font-size: 14px; }
 .brand b { color: var(--red); font-weight: normal; }
 .topbar nav { display: flex; gap: clamp(14px, 3vw, 32px); }
-.topbar nav a { font-family: var(--pixel); font-size: 11px; color: var(--cream); text-decoration: none; text-transform: uppercase; }
+.topbar nav a { white-space: nowrap; font-family: var(--pixel); font-size: 11px; color: var(--cream); text-decoration: none; text-transform: uppercase; }
 .topbar nav a:hover { color: var(--yellow); }
 .topbar nav a::before { content: "> "; color: var(--red); }
+.topbar nav .nav-donar { color: var(--yellow); opacity: 0.75; }
+.topbar nav .nav-donar:hover { opacity: 1; }
+.topbar nav .nav-donar::before { content: "\2665  "; }
 @media (max-width: 520px) { .brand span { display: none; } }
 
 /* --- Ventanas retro (marco + barra de título) --- */
