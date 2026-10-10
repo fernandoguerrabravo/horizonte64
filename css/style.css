@@ -110,8 +110,9 @@ a { color: var(--cyan); }
 }
 .hero h1 { margin: 0 0 32px; }
 .hero-logo { width: 100%; max-width: 520px; height: auto; }
-.hero-donar { display: block; width: fit-content; margin-top: 22px; font-family: var(--pixel); font-size: 10px; color: var(--yellow); opacity: 0.6; text-decoration: none; text-transform: uppercase; }
-.hero-donar span { color: var(--red); }
+.hero-donar { display: block; width: fit-content; margin-top: 20px; font-family: var(--term); font-size: 22px; letter-spacing: 1px; color: var(--yellow); opacity: 0.65; text-decoration: none; text-transform: uppercase; }
+.hero-donar { display: flex; align-items: center; gap: 8px; }
+.hero-donar .taza { flex: none; }
 .hero-donar:hover { opacity: 1; text-decoration: underline; }
 .hero-window .scene { position: relative; }
 .hero-window .scene { overflow: hidden; }
