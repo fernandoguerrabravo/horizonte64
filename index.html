@@ -38,13 +38,17 @@
       <div class="window hero-window">
         <div class="window-bar">
           <span>HORIZONTE 64</span>
-          <span class="window-buttons" aria-hidden="true"><i></i><i></i><i>×</i></span>
+          <span class="window-actions">
+            <button class="sonido" type="button" aria-pressed="false" title="Escuchar el mar">🔈 <span>Sonido</span></button>
+            <span class="window-buttons" aria-hidden="true"><i></i><i></i><i>×</i></span>
+          </span>
         </div>
         <div class="scene">
-          <img src="img/brand/paisaje-h64.webp" alt="Paisaje pixel art: sol de atardecer sobre montañas moradas, el mar y una playa" width="1360" height="768">
-          <!-- Palmera meciéndose con el viento y cofre que se abre y se cierra (arte Makko, animación CSS) -->
-          <img class="palmera" src="img/brand/palmera.png" alt="" width="194" height="426">
-          <div class="cofre" role="img" aria-label="Cofre del tesoro que se abre y se cierra"></div>
+          <!-- Escena animada (Hyperdream, Veo 3.1): olas, palmera, cofre y estrellas en loop -->
+          <video class="isla" autoplay muted loop playsinline preload="auto" poster="img/brand/isla-poster.jpg"
+                 aria-label="Paisaje pixel art: olas rompiendo en la playa al atardecer, una palmera con brisa y un cofre del tesoro">
+            <source src="img/brand/isla.mp4" type="video/mp4">
+          </video>
           <!-- Mascota oficial de Horizonte 64 saludando (animación generada en Makko) -->
           <picture class="mascota">
             <source srcset="img/brand/h64-mascota.png" media="(prefers-reduced-motion: reduce)">
@@ -140,6 +144,55 @@
     <div class="stripes" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
   </footer>
 
+  <script>
+    // Reanuda el video de la isla si el navegador lo pausó (pestaña en segundo plano, ahorro de energía)
+    (function () {
+      var v = document.querySelector(".hero-window .isla");
+      if (!v || (window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches)) return;
+      function play() { if (v.paused && !document.hidden) { var p = v.play(); if (p && p.catch) p.catch(function () {}); } }
+      document.addEventListener("visibilitychange", play);
+      v.addEventListener("pause", function () { setTimeout(play, 300); });
+
+      // Sonido del mar: intenta sonar al cargar; si el navegador lo bloquea,
+      // se activa en la primera interacción (clic, toque o tecla) en cualquier parte.
+      // Si el visitante lo silencia, se recuerda para próximas visitas.
+      var b = document.querySelector(".hero-window .sonido");
+      var KEY = "h64-sonido";
+      function pref() { try { return localStorage.getItem(KEY); } catch (e) { return null; } }
+      function savePref(val) { try { localStorage.setItem(KEY, val); } catch (e) {} }
+      function render() {
+        if (!b) return;
+        b.setAttribute("aria-pressed", String(!v.muted));
+        b.firstChild.nodeValue = v.muted ? "🔈 " : "🔊 ";
+        b.title = v.muted ? "Escuchar el mar" : "Silenciar";
+      }
+      function unmute() {
+        v.muted = false; v.volume = 0.6;
+        var p = v.play();
+        if (p && p.catch) p.catch(function () { v.muted = true; render(); });
+        render();
+      }
+      var events = ["pointerdown", "keydown", "touchstart"];
+      function firstInteraction(e) {
+        events.forEach(function (n) { document.removeEventListener(n, firstInteraction, true); });
+        if (b && b.contains(e.target)) return;   // el botón se encarga solo
+        if (v.muted && pref() !== "off") unmute();
+      }
+      if (pref() !== "off") {
+        v.muted = false; v.volume = 0.6;
+        var p = v.play();
+        if (p && p.catch) p.catch(function () {
+          v.muted = true; v.play().catch(function () {}); render();
+          events.forEach(function (n) { document.addEventListener(n, firstInteraction, true); });
+        });
+        render();
+      }
+      if (b) b.addEventListener("click", function () {
+        if (v.muted) { unmute(); savePref("on"); }
+        else { v.muted = true; savePref("off"); render(); }
+      });
+    })();
+  </script>
   <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 </body>
 </html>
