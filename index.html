@@ -81,7 +81,10 @@
               <div><dt>Estado</dt><dd class="ready">¡Disponible!</dd></div>
             </dl>
             <p>1945. Un volcán despierta y de la lava surge una flota invasora. Pilota el último avión del escuadrón y vuela directo al infierno.</p>
-            <a class="btn btn-blue" href="juegos/inferno/">Jugar <span aria-hidden="true">&gt;</span></a>
+            <div class="game-actions">
+              <a class="btn btn-blue" href="juegos/inferno/">Jugar <span aria-hidden="true">&gt;</span></a>
+              <button class="btn btn-red" type="button" data-trailer="img/inferno-trailer.mp4" data-poster="img/inferno-trailer-poster.jpg">Tráiler <span aria-hidden="true">&#9654;</span></button>
+            </div>
           </div>
         </article>
 
@@ -135,6 +138,15 @@
     </section>
   </main>
 
+  <!-- Ventana para ver tráilers -->
+  <dialog class="window trailer" aria-label="Tráiler">
+    <div class="window-bar">
+      <span>TRAILER.EXE</span>
+      <button class="trailer-close" type="button" aria-label="Cerrar">×</button>
+    </div>
+    <video controls playsinline preload="none"></video>
+  </dialog>
+
   <footer class="footer">
     <div class="footer-inner">
       <img class="footer-logo" src="img/brand/logo.png" alt="Horizonte 64 Software" width="462" height="237">
@@ -166,6 +178,23 @@
         b.firstChild.nodeValue = v.muted ? "🔈 " : "🔊 ";
         b.title = v.muted ? "Escuchar el mar" : "Silenciar";
       });
+    })();
+  </script>
+  <script>
+    // Tráilers: abre la ventana con el video y lo detiene al cerrar
+    (function () {
+      var d = document.querySelector("dialog.trailer");
+      if (!d || !d.showModal) return;
+      var v = d.querySelector("video");
+      document.querySelectorAll("[data-trailer]").forEach(function (b) {
+        b.addEventListener("click", function () {
+          v.poster = b.dataset.poster || ""; v.src = b.dataset.trailer;
+          d.showModal(); var p = v.play(); if (p && p.catch) p.catch(function () {});
+        });
+      });
+      d.querySelector(".trailer-close").addEventListener("click", function () { d.close(); });
+      d.addEventListener("click", function (e) { if (e.target === d) d.close(); });
+      d.addEventListener("close", function () { v.pause(); v.removeAttribute("src"); v.load(); });
     })();
   </script>
   <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
