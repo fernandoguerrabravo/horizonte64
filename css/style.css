@@ -110,10 +110,18 @@ a { color: var(--cyan); }
 }
 .hero h1 { margin: 0 0 32px; }
 .hero-logo { width: 100%; max-width: 520px; height: auto; }
-.hero-donar { display: block; width: fit-content; margin-top: 20px; font-family: var(--term); font-size: 22px; letter-spacing: 1px; color: var(--yellow); opacity: 0.65; text-decoration: none; text-transform: uppercase; }
-.hero-donar { display: flex; align-items: center; gap: 8px; }
-.hero-donar .taza { flex: none; }
-.hero-donar:hover { opacity: 1; text-decoration: underline; }
+.hero-donar {
+  display: flex; align-items: center; gap: 10px; width: fit-content; margin-top: 22px;
+  font-family: var(--term); font-size: 22px; letter-spacing: 1px; text-transform: uppercase; text-decoration: none;
+  color: var(--cream); opacity: 0.6; transition: opacity 0.2s;
+}
+.hero-donar .corazon { flex: none; color: var(--red); }
+.hero-donar span { border-bottom: 2px dotted rgba(240, 230, 200, 0.4); }
+.hero-donar:hover { opacity: 1; }
+.hero-donar:hover .corazon { animation: latido 0.8s steps(2) infinite; }
+.hero-donar:hover span { color: var(--yellow); border-bottom-color: var(--yellow); }
+@keyframes latido { 50% { transform: scale(1.25); } }
+@media (prefers-reduced-motion: reduce) { .hero-donar:hover .corazon { animation: none; } }
 .hero-window .scene { position: relative; }
 .hero-window .scene { overflow: hidden; }
 .hero-window .scene .isla { width: 100%; height: auto; display: block; aspect-ratio: 16 / 9; background: #1b1446; }
