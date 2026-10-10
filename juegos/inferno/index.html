@@ -2,7 +2,15 @@
 <html lang="es">
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+    <meta name="theme-color" content="#16123a">
+    <!-- Se puede instalar como app ("Agregar a pantalla de inicio") -->
+    <link rel="manifest" href="manifest.webmanifest">
+    <link rel="apple-touch-icon" href="TemplateData/icon-180.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="INFERNO">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <title>Inferno — Horizonte 64 Software</title>
     <link rel="icon" type="image/png" href="TemplateData/favicon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -37,7 +45,8 @@
             <img class="cover" src="TemplateData/cover.webp" alt="">
             <img class="logo" src="TemplateData/logo.webp" alt="Inferno">
             <button id="play" class="btn" type="button">Jugar <span aria-hidden="true">&gt;</span></button>
-            <p id="mobile-note" class="note" hidden>Este juego necesita teclado o gamepad.</p>
+            <button id="install" class="btn btn-small" type="button" hidden>Instalar en el celular</button>
+            <p id="ios-note" class="note" hidden>iPhone: toca Compartir y luego<br>«Agregar a inicio» para instalarlo</p>
           </div>
 
           <div id="loading" class="overlay" hidden>
@@ -53,10 +62,14 @@
         </div>
       </div>
 
-      <dl class="controls">
+      <dl class="controls keys">
         <div><dt>C</dt><dd>Moneda</dd></div>
         <div><dt>Espacio</dt><dd>Start / disparar</dd></div>
         <div><dt>Flechas / WASD</dt><dd>Mover</dd></div>
+      </dl>
+      <dl class="controls touch">
+        <div><dt>Arrastra</dt><dd>Mover y disparar</dd></div>
+        <div><dt>Toca</dt><dd>Jugar</dd></div>
       </dl>
     </main>
 
@@ -66,9 +79,28 @@
       var loadingEl = document.getElementById("loading");
       var fullscreenBtn = document.getElementById("fullscreen");
 
-      if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
-        document.getElementById("mobile-note").hidden = false;
+      // Celular o tablet: controles táctiles
+      var isTouch = window.matchMedia("(pointer: coarse)").matches || /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+      if (isTouch) document.body.classList.add("is-touch");
+
+      // Instalar como app: Android/Chrome ofrece el botón; en iPhone se explica cómo hacerlo
+      var standalone = window.matchMedia("(display-mode: standalone), (display-mode: fullscreen)").matches || navigator.standalone;
+      var installEvent = null;
+      var installBtn = document.getElementById("install");
+      window.addEventListener("beforeinstallprompt", function (e) {
+        e.preventDefault();
+        installEvent = e;
+        installBtn.hidden = false;
+      });
+      installBtn.addEventListener("click", function () {
+        if (!installEvent) return;
+        installEvent.prompt();
+        installEvent.userChoice.finally(function () { installEvent = null; installBtn.hidden = true; });
+      });
+      if (/iPhone|iPad|iPod/i.test(navigator.userAgent) && !standalone) {
+        document.getElementById("ios-note").hidden = false;
       }
+      if ("serviceWorker" in navigator) navigator.serviceWorker.register("sw.js").catch(function () {});
 
       function startGame() {
         startEl.hidden = true;
@@ -93,6 +125,7 @@
           }).then(function (unityInstance) {
             loadingEl.hidden = true;
             canvas.focus();
+            if (isTouch) unityInstance.SendMessage("GameManager", "SetTouchMode");
             fullscreenBtn.disabled = false;
             fullscreenBtn.onclick = function () { unityInstance.SetFullscreen(1); };
           }).catch(function (message) {
