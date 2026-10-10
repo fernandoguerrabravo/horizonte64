@@ -96,6 +96,7 @@ a { color: var(--cyan); }
 .btn:hover { transform: translate(-2px, -2px); box-shadow: inset -3px -3px 0 rgba(0, 0, 0, 0.35), inset 3px 3px 0 rgba(255, 255, 255, 0.25), 4px 4px 0 var(--black); }
 .btn:active { transform: translate(1px, 1px); }
 .btn-blue { background: var(--blue); color: var(--cream); }
+.btn-yellow { background: var(--yellow); color: var(--black); border-color: var(--black); }
 .btn-red { background: var(--red); color: var(--cream); cursor: pointer; }
 
 /* --- Portada --- */
@@ -196,6 +197,11 @@ a { color: var(--cyan); }
 .about { max-width: 760px; }
 .about-body { padding: 22px 24px 8px; }
 .about-body p { margin: 0 0 16px; }
+.donar { border-top: 2px dashed rgba(17, 17, 17, 0.3); padding: 16px 0 20px; display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px; }
+.donar p { margin: 0; flex: 1 1 260px; }
+.donar-qr { margin: 0; display: flex; flex-direction: column; align-items: center; gap: 4px; }
+.donar-qr img { width: 112px; height: auto; border: 3px solid var(--black); }
+.donar-qr figcaption { font-size: 18px; text-transform: uppercase; }
 .sprites { display: flex; flex-wrap: wrap; justify-content: center; align-items: flex-end; gap: clamp(16px, 4vw, 40px); margin-top: 48px; }
 .sprites img { height: 52px; width: auto; }
 
