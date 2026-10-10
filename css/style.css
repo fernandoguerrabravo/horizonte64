@@ -157,7 +157,22 @@ a { color: var(--cyan); }
 .stats .ready { color: var(--green); }
 
 .placeholder { display: grid; place-items: center; background: repeating-linear-gradient(45deg, #15122e 0 12px, #1b1740 12px 24px); }
-.placeholder img { width: 92px; height: auto; }
+.placeholder { position: relative; overflow: hidden; }
+.placeholder::before { /* sol synthwave detrás de la mascota */
+  content: ""; position: absolute; left: 50%; top: 18%; width: 62%; aspect-ratio: 1; transform: translateX(-50%);
+  border-radius: 50%; background: linear-gradient(180deg, var(--yellow), var(--orange) 45%, var(--red));
+  -webkit-mask: repeating-linear-gradient(180deg, #000 0 10px, transparent 10px 14px);
+          mask: repeating-linear-gradient(180deg, #000 0 10px, transparent 10px 14px);
+  opacity: 0.35;
+}
+.next-mascota { position: absolute; left: 50%; bottom: 6%; height: 84%; transform: translateX(-50%); display: block; }
+.next-mascota img { display: block; }
+.next-mascota img { height: 100%; width: auto; filter: drop-shadow(0 6px 0 rgba(0, 0, 0, 0.4)); }
+.next-badge {
+  position: absolute; top: 12px; right: 12px;
+  font-family: var(--pixel); font-size: 9px; color: var(--black); background: var(--yellow);
+  padding: 6px 8px; box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.5);
+}
 .loading { display: flex; align-items: center; gap: 12px; text-transform: uppercase; }
 .loading .bar { flex: 1; height: 18px; border: 2px solid var(--cream); padding: 2px; }
 .loading .bar div {
