@@ -108,12 +108,32 @@
         startEl.hidden = true;
         loadingEl.hidden = false;
 
+        // GitHub Pages no admite archivos de más de 100 MB: el archivo de datos se sube partido en
+        // trozos (.part0, .part1, ...) y aquí se vuelve a unir en memoria antes de arrancar Unity.
+        var dataBase = "Build/comando-santiago.data.unityweb";
+        var dataParts = 2;
+        var barFill = document.getElementById("bar-fill"), percentEl = document.getElementById("percent");
+        function pintar(pct) { barFill.style.width = pct + "%"; percentEl.textContent = pct + "%"; }
+        function bajarPartes() {
+          if (dataParts <= 1) return Promise.resolve(dataBase);
+          var trozos = [], i = 0;
+          function siguiente() {
+            if (i >= dataParts) return Promise.resolve(URL.createObjectURL(new Blob(trozos)));
+            return fetch(dataBase + ".part" + i).then(function (r) {
+              if (!r.ok) throw new Error("No se pudo descargar la parte " + i + " del juego (" + r.status + ")");
+              return r.arrayBuffer();
+            }).then(function (buf) { trozos.push(buf); i++; pintar(Math.round(i * 80 / dataParts)); return siguiente(); });
+          }
+          return siguiente();
+        }
+
         var script = document.createElement("script");
         script.src = "Build/comando-santiago.loader.js";
         script.onload = function () {
+          bajarPartes().then(function (dataUrl) {
           createUnityInstance(canvas, {
             arguments: [],
-            dataUrl: "Build/comando-santiago.data.unityweb",
+            dataUrl: dataUrl,
             frameworkUrl: "Build/comando-santiago.framework.js.unityweb",
             codeUrl: "Build/comando-santiago.wasm.unityweb",
             streamingAssetsUrl: "StreamingAssets",
@@ -121,9 +141,7 @@
             productName: "Comando Santiago",
             productVersion: "1.0",
           }, function (progress) {
-            var pct = Math.round(progress * 100);
-            document.getElementById("bar-fill").style.width = pct + "%";
-            document.getElementById("percent").textContent = pct + "%";
+            pintar(dataParts > 1 ? 80 + Math.round(progress * 20) : Math.round(progress * 100));
           }).then(function (unityInstance) {
             loadingEl.hidden = true;
             canvas.focus();
@@ -134,6 +152,11 @@
             loadingEl.hidden = true;
             document.getElementById("error").hidden = false;
             document.getElementById("error-text").textContent = message;
+          });
+          }).catch(function (err) {
+            loadingEl.hidden = true;
+            document.getElementById("error").hidden = false;
+            document.getElementById("error-text").textContent = err && err.message ? err.message : String(err);
           });
         };
         document.body.appendChild(script);
