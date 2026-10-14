@@ -158,13 +158,15 @@ a { color: var(--cyan); }
 .section-title img { height: 48px; width: auto; }
 
 /* --- Catálogo de juegos --- */
-.games { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(320px, 100%), 1fr)); gap: 32px; align-items: start; }
+.games { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(320px, 100%), 1fr)); gap: 32px; align-items: stretch; }
+.window.game { display: flex; flex-direction: column; }   /* todas las fichas del mismo alto */
 .game { display: flex; flex-direction: column; }
 .game-cover { position: relative; display: block; aspect-ratio: 4 / 3; overflow: hidden; background: #000; border-bottom: 3px solid var(--cream); }
 .game-cover > img:first-child { width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; transition: transform 0.4s; }
 .game:hover .game-cover > img:first-child { transform: scale(1.05); }
 .game-logo { position: absolute; left: 50%; bottom: 12px; transform: translateX(-50%); width: 80%; filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.8)); }
-.game-body { padding: 18px 20px 22px; display: flex; flex-direction: column; gap: 14px; }
+.game-body { padding: 18px 20px 22px; display: flex; flex-direction: column; gap: 14px; flex: 1; }
+.game-body .game-actions, .game-body .loading { margin-top: auto; }   /* botones y barra al pie de la ficha */
 .game-body p { margin: 0; }
 .game-body .btn { align-self: flex-start; }
 .game-actions { display: flex; flex-wrap: wrap; gap: 14px; }
