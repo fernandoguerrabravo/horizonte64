@@ -13,7 +13,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=20261013">
+  <link rel="stylesheet" href="css/style.css?v=20261014">
 </head>
 <body>
   <header class="topbar">
@@ -128,9 +128,10 @@
               <div><dt>Jugadores</dt><dd>01</dd></div>
               <div><dt>Estado</dt><dd class="ready">Prototipo</dd></div>
             </dl>
-            <p>Cuatro etapas por Santiago: Las Condes, Providencia, Plaza Baquedano y la Alameda hasta La Moneda. Esquiva las molotovs y rompe las barricadas. Pensado para jugar en el celular en vertical.</p>
+            <p>Cuatro etapas por Santiago, de Las Condes a La Moneda: esquiva molotovs, piedras, micros en llamas y barricadas de neumáticos, y enfrenta al líder frente al palacio. Pensado para jugar en el celular en vertical.</p>
             <div class="game-actions">
               <a class="btn btn-blue" href="juegos/gope-o18/">Jugar <span aria-hidden="true">&gt;</span></a>
+              <button class="btn btn-red" type="button" data-trailer="img/gope-trailer.mp4?v=1" data-poster="img/gope-trailer-poster.jpg" data-vertical="1">Tráiler <span aria-hidden="true">&#9654;</span></button>
             </div>
           </div>
         </article>
@@ -245,6 +246,7 @@
       document.querySelectorAll("[data-trailer]").forEach(function (b) {
         b.addEventListener("click", function () {
           v.poster = b.dataset.poster || ""; v.src = b.dataset.trailer;
+          d.classList.toggle("vertical", b.dataset.vertical === "1");
           d.showModal(); var p = v.play(); if (p && p.catch) p.catch(function () {});
         });
       });
