@@ -111,7 +111,7 @@
         // GitHub Pages no admite archivos de más de 100 MB: el archivo de datos se sube partido en
         // trozos (.part0, .part1, ...) y aquí se vuelve a unir en memoria antes de arrancar Unity.
         var dataBase = "Build/comando-santiago.data.unityweb";
-        var dataParts = 2;
+        var dataParts = 3;
         var barFill = document.getElementById("bar-fill"), percentEl = document.getElementById("percent");
         function pintar(pct) { barFill.style.width = pct + "%"; percentEl.textContent = pct + "%"; }
         function bajarPartes() {
