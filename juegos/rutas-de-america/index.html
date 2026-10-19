@@ -65,13 +65,16 @@
       <dl class="controls keys">
         <div><dt>Arrastrar mouse / ← →</dt><dd>Girar</dd></div>
         <div><dt>Mantener quieto / ↓ / Espacio</dt><dd>Frenar</dd></div>
-        <div><dt>↑ / W / Shift</dt><dd>Turbo</dd></div>
-        <div><dt>P / Esc</dt><dd>Pausa</dd></div>
+        <div><dt>Shift</dt><dd>Turbo</dd></div>
+        <div><dt>← → al llegar a la raya</dt><dd>Horquillas (Caracoles)</dd></div>
+        <div><dt>↑ / W</dt><dd>Adelantar (Caracoles) · Turbo (Yungas)</dd></div>
+        <div><dt>P / Esc · M</dt><dd>Pausa · Mapa</dd></div>
       </dl>
       <dl class="controls touch">
         <div><dt>Arrastrar el dedo</dt><dd>Girar</dd></div>
         <div><dt>Dedo quieto</dt><dd>Frenar</dd></div>
         <div><dt>Botón TURBO</dt><dd>Turbo (otro pulgar)</dd></div>
+        <div><dt>Deslizar hacia la curva</dt><dd>Horquillas (Caracoles)</dd></div>
       </dl>
       <p class="rotate-note">Gira el celular para jugar en vertical ⟳</p>
     </main>
@@ -143,7 +146,7 @@
         // GitHub Pages no admite archivos de más de 100 MB: el archivo de datos se sube partido en
         // trozos (.part0, .part1, ...) y aquí se vuelve a unir en memoria antes de arrancar Unity.
         var dataBase = "Build/rutas-de-america.data.unityweb";
-        var dataParts = 1;
+        var dataParts = 2;
         var barFill = document.getElementById("bar-fill"), percentEl = document.getElementById("percent");
         function pintar(pct) { barFill.style.width = pct + "%"; percentEl.textContent = pct + "%"; }
         function bajarPartes() {
