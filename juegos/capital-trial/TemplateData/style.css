@@ -58,6 +58,9 @@ body { background: var(--black); color: var(--cream); font-family: var(--term); 
 .logo, #play, .note { position: relative; }
 .logo { width: min(42%, 420px); }
 .note { color: var(--yellow); font-size: 20px; }
+/* la marca de Horizonte 64 encima del logo del juego */
+.marca { position: relative; width: min(24%, 300px); margin-bottom: -6px;
+         image-rendering: pixelated; filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.8)); }
 
 .btn {
   display: inline-flex; align-items: center; gap: 14px; cursor: pointer;

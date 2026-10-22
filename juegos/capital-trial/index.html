@@ -43,6 +43,7 @@
                (y ese clic permite que el navegador reproduzca sonido) -->
           <div id="start" class="overlay">
             <img class="cover" src="TemplateData/cover.webp" alt="">
+            <img class="marca" src="TemplateData/h64-logo.png" alt="Horizonte 64 Software">
             <img class="logo" src="TemplateData/logo.webp" alt="Capital Trial">
             <button id="play" class="btn" type="button">Jugar <span aria-hidden="true">&gt;</span></button>
             <button id="install" class="btn btn-small" type="button" hidden>Instalar en el celular</button>
@@ -63,6 +64,8 @@
       </div>
 
       <dl class="controls keys">
+        <div><dt>C</dt><dd>Moneda</dd></div>
+        <div><dt>Espacio</dt><dd>Start</dd></div>
         <div><dt>→ / D</dt><dd>Acelerar</dd></div>
         <div><dt>← / A</dt><dd>Frenar</dd></div>
         <div><dt>↑ / W · ↓ / S</dt><dd>Inclinarse atrás · adelante</dd></div>
@@ -143,7 +146,7 @@
         // GitHub Pages no admite archivos de más de 100 MB: el archivo de datos se sube partido en
         // trozos (.part0, .part1, ...) y aquí se vuelve a unir en memoria antes de arrancar Unity.
         var dataBase = "Build/capital-trial.data.unityweb";
-        var dataParts = 2;
+        var dataParts = 3;
         var barFill = document.getElementById("bar-fill"), percentEl = document.getElementById("percent");
         function pintar(pct) { barFill.style.width = pct + "%"; percentEl.textContent = pct + "%"; }
         function bajarPartes() {
