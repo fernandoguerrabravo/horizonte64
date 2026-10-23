@@ -1,0 +1,24 @@
+{
+  "name": "Cross Country Engine — Horizonte 64",
+  "short_name": "Cross Country Engine",
+  "description": "Trial acrobático de motos en pantalla dividida: tú contra el rival por tres carreras de tres tramos, con neumáticos, muros, piletas, autos y buses. Arcade con fichas. Horizonte 64 Software. Juega gratis.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "fullscreen",
+  "orientation": "landscape",
+  "background_color": "#111111",
+  "theme_color": "#16123a",
+  "lang": "es",
+  "icons": [
+    {
+      "src": "TemplateData/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "TemplateData/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
