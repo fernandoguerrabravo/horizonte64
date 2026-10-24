@@ -67,14 +67,14 @@
         <div><dt>← → / A D</dt><dd>Mover el jet</dd></div>
         <div><dt>↑ ↓ / W S</dt><dd>Acelerar · frenar</dd></div>
         <div><dt>Espacio</dt><dd>Disparar</dd></div>
-        <div><dt>Enter</dt><dd>Empezar</dd></div>
+        <div><dt>C</dt><dd>Coins</dd></div>
+        <div><dt>Enter</dt><dd>Start</dd></div>
       </dl>
       <dl class="controls touch">
         <div><dt>Arrastra</dt><dd>Mover el jet (dispara solo)</dd></div>
-        <div><dt>Toca</dt><dd>Empezar</dd></div>
+        <div><dt>COINS · START</dt><dd>Crédito y despegar</dd></div>
       </dl>
-      <p class="rotate-note">Gira el celular para jugar en horizontal ⟳</p>
-    </main>
+          </main>
 
     <script>
       var canvas = document.getElementById("unity-canvas");
@@ -144,14 +144,16 @@
         // trozos (.part0, .part1, ...) y aquí se vuelve a unir en memoria antes de arrancar Unity.
         var dataBase = "Build/rio-baker.data.unityweb";
         var dataParts = 1;
+        // cada build trae su número: el navegador nunca mezcla archivos de una versión vieja con los de la nueva
+        var ver = "?v=20261024140040";
         var barFill = document.getElementById("bar-fill"), percentEl = document.getElementById("percent");
         function pintar(pct) { barFill.style.width = pct + "%"; percentEl.textContent = pct + "%"; }
         function bajarPartes() {
-          if (dataParts <= 1) return Promise.resolve(dataBase);
+          if (dataParts <= 1) return Promise.resolve(dataBase + ver);
           var trozos = [], i = 0;
           function siguiente() {
             if (i >= dataParts) return Promise.resolve(URL.createObjectURL(new Blob(trozos)));
-            return fetch(dataBase + ".part" + i).then(function (r) {
+            return fetch(dataBase + ".part" + i + ver).then(function (r) {
               if (!r.ok) throw new Error("No se pudo descargar la parte " + i + " del juego (" + r.status + ")");
               return r.arrayBuffer();
             }).then(function (buf) { trozos.push(buf); i++; pintar(Math.round(i * 80 / dataParts)); return siguiente(); });
@@ -160,14 +162,14 @@
         }
 
         var script = document.createElement("script");
-        script.src = "Build/rio-baker.loader.js";
+        script.src = "Build/rio-baker.loader.js" + ver;
         script.onload = function () {
           bajarPartes().then(function (dataUrl) {
           createUnityInstance(canvas, {
             arguments: [],
             dataUrl: dataUrl,
-            frameworkUrl: "Build/rio-baker.framework.js.unityweb",
-            codeUrl: "Build/rio-baker.wasm.unityweb",
+            frameworkUrl: "Build/rio-baker.framework.js.unityweb" + ver,
+            codeUrl: "Build/rio-baker.wasm.unityweb" + ver,
             streamingAssetsUrl: "StreamingAssets",
             companyName: "Horizonte 64 Software",
             productName: "Río Baker",
