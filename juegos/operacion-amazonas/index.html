@@ -64,7 +64,7 @@
       </div>
 
       <dl class="controls keys">
-        <div><dt>C</dt><dd>Moneda</dd></div>
+        <div><dt>C</dt><dd>Coins</dd></div>
         <div><dt>Enter</dt><dd>Start</dd></div>
         <div><dt>Flechas / WASD</dt><dd>Mover</dd></div>
         <div><dt>Espacio / Z</dt><dd>Disparar</dd></div>
@@ -72,9 +72,8 @@
       </dl>
       <dl class="controls touch">
         <div><dt>Pulgar izquierdo</dt><dd>Mover</dd></div>
-        <div><dt>Botones</dt><dd>Disparar · granada · moneda · start</dd></div>
+        <div><dt>Botones</dt><dd>Disparar · granada · coins · start</dd></div>
       </dl>
-      <p class="rotate-note">Gira el celular para jugar en horizontal ⟳</p>
     </main>
 
     <script>
@@ -145,14 +144,16 @@
         // trozos (.part0, .part1, ...) y aquí se vuelve a unir en memoria antes de arrancar Unity.
         var dataBase = "Build/operacion-amazonas.data.unityweb";
         var dataParts = 1;
+        // cada build trae su número: el navegador nunca mezcla archivos de una versión vieja con los de la nueva
+        var ver = "?v=20261024044707";
         var barFill = document.getElementById("bar-fill"), percentEl = document.getElementById("percent");
         function pintar(pct) { barFill.style.width = pct + "%"; percentEl.textContent = pct + "%"; }
         function bajarPartes() {
-          if (dataParts <= 1) return Promise.resolve(dataBase);
+          if (dataParts <= 1) return Promise.resolve(dataBase + ver);
           var trozos = [], i = 0;
           function siguiente() {
             if (i >= dataParts) return Promise.resolve(URL.createObjectURL(new Blob(trozos)));
-            return fetch(dataBase + ".part" + i).then(function (r) {
+            return fetch(dataBase + ".part" + i + ver).then(function (r) {
               if (!r.ok) throw new Error("No se pudo descargar la parte " + i + " del juego (" + r.status + ")");
               return r.arrayBuffer();
             }).then(function (buf) { trozos.push(buf); i++; pintar(Math.round(i * 80 / dataParts)); return siguiente(); });
@@ -161,14 +162,14 @@
         }
 
         var script = document.createElement("script");
-        script.src = "Build/operacion-amazonas.loader.js";
+        script.src = "Build/operacion-amazonas.loader.js" + ver;
         script.onload = function () {
           bajarPartes().then(function (dataUrl) {
           createUnityInstance(canvas, {
             arguments: [],
             dataUrl: dataUrl,
-            frameworkUrl: "Build/operacion-amazonas.framework.js.unityweb",
-            codeUrl: "Build/operacion-amazonas.wasm.unityweb",
+            frameworkUrl: "Build/operacion-amazonas.framework.js.unityweb" + ver,
+            codeUrl: "Build/operacion-amazonas.wasm.unityweb" + ver,
             streamingAssetsUrl: "StreamingAssets",
             companyName: "Horizonte 64 Software",
             productName: "Operación Amazonas",

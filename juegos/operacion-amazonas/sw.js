@@ -1,4 +1,4 @@
-// Service worker mínimo: permite instalar Capital Trial como app.
+// Service worker mínimo: permite instalar Operación Amazonas como app.
 // No guarda nada en caché; el juego siempre se descarga del sitio.
 self.addEventListener("install", function () { self.skipWaiting(); });
 self.addEventListener("activate", function (e) { e.waitUntil(self.clients.claim()); });
