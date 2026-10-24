@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+    <meta name="theme-color" content="#16123a">
+    <!-- Se puede instalar como app ("Agregar a pantalla de inicio") -->
+    <link rel="manifest" href="manifest.webmanifest">
+    <link rel="apple-touch-icon" href="TemplateData/icon-180.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="Patrulla Austral">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>Patrulla Austral — Horizonte 64 Software</title>
+    <link rel="icon" type="image/png" href="TemplateData/favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="TemplateData/style.css">
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="../../">
+        <img src="TemplateData/isotipo.png" alt="" width="141" height="144">
+        <span>HORIZONTE <b>64</b></span>
+      </a>
+      <nav><a href="../../#juegos">Juegos</a></nav>
+    </header>
+
+    <main class="stage">
+      <div class="window">
+        <div class="window-bar">
+          <span>PATRULLA AUSTRAL.EXE</span>
+          <span class="window-buttons">
+            <button id="fullscreen" type="button" title="Pantalla completa" disabled>⛶</button>
+          </span>
+        </div>
+
+        <div class="screen">
+          <canvas id="unity-canvas" width=1280 height=720 tabindex="-1"></canvas>
+
+          <!-- Pantalla de inicio: el juego se descarga recién al pulsar JUGAR
+               (y ese clic permite que el navegador reproduzca sonido) -->
+          <div id="start" class="overlay">
+            <img class="cover" src="TemplateData/cover.webp" alt="">
+            <img class="marca" src="TemplateData/h64-logo.png" alt="Horizonte 64 Software">
+            <img class="logo" src="TemplateData/logo.webp" alt="Patrulla Austral">
+            <button id="play" class="btn" type="button">Jugar <span aria-hidden="true">&gt;</span></button>
+            <button id="install" class="btn btn-small" type="button" hidden>Instalar en el celular</button>
+            <p id="ios-note" class="note" hidden>iPhone: toca Compartir y luego<br>«Agregar a inicio» para instalarlo</p>
+          </div>
+
+          <div id="loading" class="overlay" hidden>
+            <p>Cargando</p>
+            <div class="bar"><div id="bar-fill"></div></div>
+            <p id="percent">0%</p>
+          </div>
+
+          <div id="error" class="overlay" hidden>
+            <p>No se pudo cargar el juego.</p>
+            <p id="error-text" class="note"></p>
+          </div>
+        </div>
+      </div>
+
+      <dl class="controls keys">
+        <div><dt>C</dt><dd>Moneda</dd></div>
+        <div><dt>Enter</dt><dd>Start</dd></div>
+        <div><dt>↑ ↓ / W S</dt><dd>Subir · bajar</dd></div>
+        <div><dt>→ ← / D A</dt><dd>Acelerar · dar la vuelta</dd></div>
+        <div><dt>Espacio / Z</dt><dd>Láser</dd></div>
+        <div><dt>X</dt><dd>Ráfaga</dd></div>
+      </dl>
+      <dl class="controls touch">
+        <div><dt>Pulgar izquierdo</dt><dd>Volar</dd></div>
+        <div><dt>Botones</dt><dd>Láser · bomba · moneda · start</dd></div>
+      </dl>
+      <p class="rotate-note">Gira el celular para jugar en horizontal ⟳</p>
+    </main>
+
+    <script>
+      var canvas = document.getElementById("unity-canvas");
+      var startEl = document.getElementById("start");
+      var loadingEl = document.getElementById("loading");
+      var fullscreenBtn = document.getElementById("fullscreen");
+
+      // Celular o tablet: controles táctiles
+      var isTouch = window.matchMedia("(pointer: coarse)").matches || /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+      if (isTouch) document.body.classList.add("is-touch");
+
+      // Instalar como app: Android/Chrome ofrece el botón; en iPhone se explica cómo hacerlo
+      var standalone = window.matchMedia("(display-mode: standalone), (display-mode: fullscreen)").matches || navigator.standalone;
+      var installEvent = null;
+      var installBtn = document.getElementById("install");
+      window.addEventListener("beforeinstallprompt", function (e) {
+        e.preventDefault();
+        installEvent = e;
+        installBtn.hidden = false;
+      });
+      installBtn.addEventListener("click", function () {
+        if (!installEvent) return;
+        installEvent.prompt();
+        installEvent.userChoice.finally(function () { installEvent = null; installBtn.hidden = true; });
+      });
+      if (/iPhone|iPad|iPod/i.test(navigator.userAgent) && !standalone) {
+        document.getElementById("ios-note").hidden = false;
+      }
+      if ("serviceWorker" in navigator) navigator.serviceWorker.register("sw.js").catch(function () {});
+
+      // --- Sonido en celulares ---
+      // Unity crea su AudioContext recién al terminar la descarga (fuera del toque en "Jugar"), y los navegadores
+      // de celular lo dejan suspendido. Se registra cada contexto y se reanuda en cada toque.
+      // En iPhone, además, el audio web se silencia con el interruptor de silencio: se pide la sesión de
+      // reproducción y se toca un audio HTML mudo para que el sistema trate el juego como "reproducción".
+      var contextos = [];
+      (function () {
+        var Orig = window.AudioContext || window.webkitAudioContext;
+        if (!Orig) return;
+        function Envuelto(opts) { var c = opts ? new Orig(opts) : new Orig(); contextos.push(c); return c; }
+        Envuelto.prototype = Orig.prototype;
+        window.AudioContext = Envuelto;
+        if (window.webkitAudioContext) window.webkitAudioContext = Envuelto;
+      })();
+      var audioMudo = null;
+      function desbloquearAudio() {
+        try { if (navigator.audioSession) navigator.audioSession.type = "playback"; } catch (e) {}
+        if (!audioMudo) {
+          // 0,1 s de silencio en WAV
+          audioMudo = new Audio("data:audio/wav;base64,UklGRkQDAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YSADAACAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgA==");
+          audioMudo.loop = true; audioMudo.setAttribute("playsinline", "");
+        }
+        var p = audioMudo.play(); if (p && p.catch) p.catch(function () {});
+        contextos.forEach(function (c) { if (c.state !== "running" && c.resume) c.resume().catch(function () {}); });
+      }
+      ["touchstart", "touchend", "pointerdown", "mousedown", "keydown", "click"].forEach(function (ev) {
+        document.addEventListener(ev, desbloquearAudio, { capture: true, passive: true });
+      });
+      document.addEventListener("visibilitychange", function () { if (!document.hidden) desbloquearAudio(); });
+
+      function startGame() {
+        desbloquearAudio();
+        startEl.hidden = true;
+        loadingEl.hidden = false;
+
+        // GitHub Pages no admite archivos de más de 100 MB: el archivo de datos se sube partido en
+        // trozos (.part0, .part1, ...) y aquí se vuelve a unir en memoria antes de arrancar Unity.
+        var dataBase = "Build/patrulla-austral.data.unityweb";
+        var dataParts = 1;
+        var barFill = document.getElementById("bar-fill"), percentEl = document.getElementById("percent");
+        function pintar(pct) { barFill.style.width = pct + "%"; percentEl.textContent = pct + "%"; }
+        function bajarPartes() {
+          if (dataParts <= 1) return Promise.resolve(dataBase);
+          var trozos = [], i = 0;
+          function siguiente() {
+            if (i >= dataParts) return Promise.resolve(URL.createObjectURL(new Blob(trozos)));
+            return fetch(dataBase + ".part" + i).then(function (r) {
+              if (!r.ok) throw new Error("No se pudo descargar la parte " + i + " del juego (" + r.status + ")");
+              return r.arrayBuffer();
+            }).then(function (buf) { trozos.push(buf); i++; pintar(Math.round(i * 80 / dataParts)); return siguiente(); });
+          }
+          return siguiente();
+        }
+
+        var script = document.createElement("script");
+        script.src = "Build/patrulla-austral.loader.js";
+        script.onload = function () {
+          bajarPartes().then(function (dataUrl) {
+          createUnityInstance(canvas, {
+            arguments: [],
+            dataUrl: dataUrl,
+            frameworkUrl: "Build/patrulla-austral.framework.js.unityweb",
+            codeUrl: "Build/patrulla-austral.wasm.unityweb",
+            streamingAssetsUrl: "StreamingAssets",
+            companyName: "Horizonte 64 Software",
+            productName: "Patrulla Austral",
+            productVersion: "1.0",
+          }, function (progress) {
+            pintar(dataParts > 1 ? 80 + Math.round(progress * 20) : Math.round(progress * 100));
+          }).then(function (unityInstance) {
+            loadingEl.hidden = true;
+            canvas.focus();
+            desbloquearAudio();
+            // Si el contexto quedó suspendido, se avisa: el primer toque en el juego lo activa
+            setTimeout(function () { contextos.forEach(function (c) { if (c.state !== "running" && c.resume) c.resume().catch(function () {}); }); }, 300);
+            fullscreenBtn.disabled = false;
+            fullscreenBtn.onclick = function () { unityInstance.SetFullscreen(1); };
+          }).catch(function (message) {
+            loadingEl.hidden = true;
+            document.getElementById("error").hidden = false;
+            document.getElementById("error-text").textContent = message;
+          });
+          }).catch(function (err) {
+            loadingEl.hidden = true;
+            document.getElementById("error").hidden = false;
+            document.getElementById("error-text").textContent = err && err.message ? err.message : String(err);
+          });
+        };
+        document.body.appendChild(script);
+      }
+
+      document.getElementById("play").addEventListener("click", startGame);
+      // Al hacer clic en el juego, recupera el foco del teclado
+      canvas.addEventListener("pointerdown", function () { canvas.focus(); });
+    </script>
+  </body>
+</html>
