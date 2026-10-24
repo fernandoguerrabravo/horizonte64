@@ -64,15 +64,15 @@
       </div>
 
       <dl class="controls keys">
-        <div><dt>C</dt><dd>Coins</dd></div>
-        <div><dt>Enter</dt><dd>Start</dd></div>
+        <div><dt>Enter</dt><dd>Jugar</dd></div>
+        
         <div><dt>Flechas / WASD</dt><dd>Mover</dd></div>
         <div><dt>Espacio / Z</dt><dd>Disparar</dd></div>
         <div><dt>X</dt><dd>Granada</dd></div>
       </dl>
       <dl class="controls touch">
-        <div><dt>Pulgar izquierdo</dt><dd>Mover</dd></div>
-        <div><dt>Botones</dt><dd>Disparar · granada · coins · start</dd></div>
+        <div><dt>Arrastra</dt><dd>Mover (dispara solo)</dd></div>
+        <div><dt>Ícono o 2.º dedo</dt><dd>Granada</dd></div>
       </dl>
     </main>
 
@@ -145,7 +145,7 @@
         var dataBase = "Build/operacion-amazonas.data.unityweb";
         var dataParts = 1;
         // cada build trae su número: el navegador nunca mezcla archivos de una versión vieja con los de la nueva
-        var ver = "?v=20261024044707";
+        var ver = "?v=20261024211919";
         var barFill = document.getElementById("bar-fill"), percentEl = document.getElementById("percent");
         function pintar(pct) { barFill.style.width = pct + "%"; percentEl.textContent = pct + "%"; }
         function bajarPartes() {
