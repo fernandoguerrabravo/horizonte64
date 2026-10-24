@@ -1,7 +1,7 @@
 {
   "name": "Ladrillazo — Horizonte 64",
   "short_name": "Ladrillazo",
-  "description": "Rompe los muros de Latinoamérica con la pelota y la paleta, de Chile a México: un país por muro. Arcade con fichas. Horizonte 64 Software. Juega gratis.",
+  "description": "Rompe los muros de Latinoamérica con la pelota y la paleta, de Chile a México: un país por muro. Arcade para jugar con un dedo. Horizonte 64 Software. Juega gratis.",
   "start_url": "./",
   "scope": "./",
   "display": "fullscreen",
