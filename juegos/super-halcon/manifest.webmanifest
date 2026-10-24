@@ -1,7 +1,7 @@
 {
   "name": "Super Halcón — Horizonte 64",
   "short_name": "Super Halcón",
-  "description": "Un helicóptero contra la base enemiga: montañas, caverna, meteoros, ciudad y el botín. Arcade con fichas. Horizonte 64 Software. Juega gratis.",
+  "description": "Un helicóptero contra la base enemiga: montañas, caverna, meteoros, ciudad y el botín. Se juega con un dedo. Horizonte 64 Software. Juega gratis.",
   "start_url": "./",
   "scope": "./",
   "display": "fullscreen",
