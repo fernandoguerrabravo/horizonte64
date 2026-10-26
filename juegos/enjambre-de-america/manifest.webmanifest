@@ -1,0 +1,24 @@
+{
+  "name": "Enjambre de América — Horizonte 64",
+  "short_name": "Enjambre de América",
+  "description": "Insectos gigantes de Latinoamérica bajan en formación: arrastra el dedo para mover tu nave y dispara sola. Horizonte 64 Software. Juega gratis.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "fullscreen",
+  "orientation": "portrait",
+  "background_color": "#111111",
+  "theme_color": "#16123a",
+  "lang": "es",
+  "icons": [
+    {
+      "src": "TemplateData/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "TemplateData/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
