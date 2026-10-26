@@ -1,0 +1,24 @@
+{
+  "name": "Gran Premio de América — Horizonte 64",
+  "short_name": "GP América",
+  "description": "Gran Premio de Fórmula por los lugares más turísticos de Latinoamérica: clasifica, larga desde la primera fila y gana contra el reloj. Toca y juega. Horizonte 64 Software. Juega gratis.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "fullscreen",
+  "orientation": "landscape",
+  "background_color": "#111111",
+  "theme_color": "#16123a",
+  "lang": "es",
+  "icons": [
+    {
+      "src": "TemplateData/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "TemplateData/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
