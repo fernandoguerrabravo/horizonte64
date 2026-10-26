@@ -1,0 +1,24 @@
+{
+  "name": "Duelo de Dioses — Horizonte 64",
+  "short_name": "Duelo de Dioses",
+  "description": "La Luz del Sur contra la Sombra del Norte en un tablero sagrado: cada choque de criaturas se pelea en una arena en tiempo real. Solo o con un amigo en el mismo celular. Toca para jugar. Horizonte 64 Software. Juega gratis.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "fullscreen",
+  "orientation": "landscape",
+  "background_color": "#111111",
+  "theme_color": "#2a1840",
+  "lang": "es",
+  "icons": [
+    {
+      "src": "TemplateData/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "TemplateData/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
