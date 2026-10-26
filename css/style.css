@@ -163,6 +163,13 @@ a { color: var(--cyan); }
 .games { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; align-items: stretch; }
 @media (max-width: 980px) { .games { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 560px) { .games { grid-template-columns: 1fr; gap: 18px; } .game-cover { aspect-ratio: 16 / 9; } }
+
+/* categorías del catálogo: botones para saltar y un título por grilla */
+.games-nav { display: flex; flex-wrap: wrap; gap: 10px; margin: 0 0 8px; }
+.games-nav a { font-family: var(--pixel); font-size: 10px; color: var(--cream); text-decoration: none; text-transform: uppercase; border: 2px solid var(--cream); padding: 8px 10px; background: var(--navy-2); }
+.games-nav a:hover { color: var(--black); background: var(--yellow); border-color: var(--yellow); }
+.games-cat { font-family: var(--pixel); font-weight: normal; font-size: 14px; color: var(--yellow); text-transform: uppercase; margin: 40px 0 16px; padding-bottom: 8px; border-bottom: 3px dashed var(--navy); scroll-margin-top: 80px; }
+.games-cat::before { content: "> "; color: var(--red); }
 .window.game { display: flex; flex-direction: column; }   /* todas las fichas del mismo alto */
 .game { display: flex; flex-direction: column; }
 .game-cover { position: relative; display: block; aspect-ratio: 16 / 10; overflow: hidden; background: #000; border-bottom: 3px solid var(--cream); }

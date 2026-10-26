@@ -13,7 +13,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=20261023">
+  <link rel="stylesheet" href="css/style.css?v=20261025">
 </head>
 <body>
   <header class="topbar">
@@ -66,6 +66,17 @@
     <section id="juegos" class="section">
       <h2 class="section-title"><img class="pixel" src="img/brand/icon-jugar.png" alt="" width="56" height="61"> Juegos</h2>
 
+      <!-- Una grilla por categoría: agrega cada juego nuevo dentro del <div class="games"> de su categoría -->
+      <nav class="games-nav" aria-label="Categorías de juegos">
+        <a href="#cat-aviones">Aviones</a>
+        <a href="#cat-naves">Naves espaciales</a>
+        <a href="#cat-defensa">Defensa</a>
+        <a href="#cat-motor">Motos y autos</a>
+        <a href="#cat-aventura">Aventura</a>
+        <a href="#cat-habilidad">Habilidad</a>
+      </nav>
+
+      <h3 class="games-cat" id="cat-aviones">Aviones</h3>
       <div class="games">
         <article class="window game">
           <div class="window-bar">
@@ -89,7 +100,6 @@
             </div>
           </div>
         </article>
-
         <article class="window game">
           <div class="window-bar">
             <span>RIOS.EXE</span>
@@ -109,28 +119,6 @@
             <div class="game-actions">
               <a class="btn btn-blue" href="juegos/rios-de-america/">Jugar <span aria-hidden="true">&gt;</span></a>
               <button class="btn btn-red" type="button" data-trailer="img/rios-trailer.mp4" data-poster="img/rios-trailer-poster.jpg" data-vertical="1">Tráiler <span aria-hidden="true">&#9654;</span></button>
-            </div>
-          </div>
-        </article>
-        <article class="window game">
-          <div class="window-bar">
-            <span>AMAZONAS.EXE</span>
-            <span class="window-buttons" aria-hidden="true"><i></i><i></i><i>×</i></span>
-          </div>
-          <a class="game-cover" href="juegos/operacion-amazonas/">
-            <img src="img/amazonas-cover.webp" alt="Un comando de bandana roja corre por un puente de madera en la selva, con un templo y el sol del atardecer de fondo" loading="lazy" width="768" height="1151">
-            <img class="game-logo" src="img/amazonas-logo.webp" alt="OPERACIÓN AMAZONAS" loading="lazy">
-          </a>
-          <div class="game-body">
-            <dl class="stats">
-              <div><dt>Género</dt><dd>Acción arcade</dd></div>
-              <div><dt>Jugadores</dt><dd>01</dd></div>
-              <div><dt>Estado</dt><dd class="ready">¡Disponible!</dd></div>
-            </dl>
-            <p>Toca la pantalla y entra a la selva. Un comando solo contra los Jaguares Negros: cruza los ríos, vuela las chozas con granadas, rescata a los científicos amarrados y vence la oleada en la puerta de cada campamento. Cuatro etapas, de la orilla del río al templo perdido, con tabla de récords como en el arcade. En el celular se juega con un dedo: arrastra para moverte y dispara solo; la granada con el ícono o un segundo dedo.</p>
-            <div class="game-actions">
-              <a class="btn btn-blue" href="juegos/operacion-amazonas/">Jugar <span aria-hidden="true">&gt;</span></a>
-              <button class="btn btn-red" type="button" data-trailer="img/amazonas-trailer.mp4?v=2" data-poster="img/amazonas-trailer-poster.jpg?v=2" data-vertical="1">Tráiler <span aria-hidden="true">&#9654;</span></button>
             </div>
           </div>
         </article>
@@ -156,50 +144,10 @@
             </div>
           </div>
         </article>
-        <article class="window game">
-          <div class="window-bar">
-            <span>CROSS.EXE</span>
-            <span class="window-buttons" aria-hidden="true"><i></i><i></i><i>×</i></span>
-          </div>
-          <a class="game-cover" href="juegos/cross-country-engine/">
-            <img src="img/cross-cover.webp" alt="Un piloto de trial de rojo salta en caballito desde una rampa de madera sobre un bus de dos pisos y una fila de neumáticos, con público en el campo" loading="lazy" width="1280" height="714">
-            <img class="game-logo game-logo-chico" src="img/cross-logo.webp" alt="CROSS COUNTRY ENGINE" loading="lazy">
-          </a>
-          <div class="game-body">
-            <dl class="stats">
-              <div><dt>Género</dt><dd>Trial de motos</dd></div>
-              <div><dt>Jugadores</dt><dd>01</dd></div>
-              <div><dt>Estado</dt><dd class="ready">¡Disponible!</dd></div>
-            </dl>
-            <p>Toca la pantalla y arranca. Pantalla dividida: arriba vas tú y abajo el rival, por seis carreras de tres tramos con reloj: la campiña, el pueblo, el estadio, el puerto, el bosque y la ciudad de noche. Cada obstáculo se pasa a su manera: los neumáticos rápido, las vallas despacio, el muro en caballito, las mesas y las piletas de un salto, y los autos, el camión y el bus a fondo desde la rampa. Si te caes, el reloj corre al doble. En el celular se juega con los pulgares: el izquierdo apoyado acelera, atrás frena y arriba hace caballito; un toque a la derecha salta. También con el teclado.</p>
-            <div class="game-actions">
-              <a class="btn btn-blue" href="juegos/cross-country-engine/">Jugar <span aria-hidden="true">&gt;</span></a>
-              <button class="btn btn-red" type="button" data-trailer="img/cross-trailer.mp4?v=3" data-poster="img/cross-trailer-poster.jpg?v=3">Tráiler <span aria-hidden="true">&#9654;</span></button>
-            </div>
-          </div>
-        </article>
-        <article class="window game">
-          <div class="window-bar">
-            <span>INVASORES.EXE</span>
-            <span class="window-buttons" aria-hidden="true"><i></i><i></i><i>×</i></span>
-          </div>
-          <a class="game-cover" href="juegos/invasores-de-atacama/">
-            <img src="img/invasores-cover.webp?v=2" alt="Una medusa de cuarzo, cóndores de cristal y piedras vivas con geoglifos bajan de noche sobre el desierto de Atacama, frente a un cañón láser que dispara junto a los observatorios" loading="lazy" width="768" height="1152">
-            <img class="game-logo" src="img/invasores-logo.webp?v=2" alt="INVASORES DE ATACAMA" loading="lazy">
-          </a>
-          <div class="game-body">
-            <dl class="stats">
-              <div><dt>Género</dt><dd>Shooter arcade</dd></div>
-              <div><dt>Jugadores</dt><dd>01</dd></div>
-              <div><dt>Estado</dt><dd class="ready">¡Disponible!</dd></div>
-            </dl>
-            <p>Toca la pantalla y defiende los cielos del norte. Una flota de criaturas de otro mundo —cóndores de cristal, chinchillas cósmicas y piedras vivas con geoglifos— baja en formación sobre el desierto de Atacama: mueve tu cañón láser, escóndete tras las pircas de piedra y derríbalos antes de que aterricen, que mientras menos quedan, más rápido bajan. Caza la medusa de cuarzo que cruza el cielo para sumar puntos extra. Cuatro noches en Atacama —los observatorios, el Valle de la Luna, el Gigante de Atacama y el llano de las antenas— y después la invasión sigue a la Luna, Marte, Europa y Titán, cada mundo con sus propias criaturas. En el celular solo deslizas el dedo: el cañón te sigue y dispara solo. Tabla de récords como en el arcade.</p>
-            <div class="game-actions">
-              <a class="btn btn-blue" href="juegos/invasores-de-atacama/">Jugar <span aria-hidden="true">&gt;</span></a>
-              <button class="btn btn-red" type="button" data-trailer="img/invasores-trailer.mp4?v=2" data-poster="img/invasores-trailer-poster.jpg?v=2" data-vertical="1">Tráiler <span aria-hidden="true">&#9654;</span></button>
-            </div>
-          </div>
-        </article>
+      </div>
+
+      <h3 class="games-cat" id="cat-naves">Naves espaciales</h3>
+      <div class="games">
         <article class="window game">
           <div class="window-bar">
             <span>PATRULLA.EXE</span>
@@ -219,28 +167,6 @@
             <div class="game-actions">
               <a class="btn btn-blue" href="juegos/patrulla-latina/">Jugar <span aria-hidden="true">&gt;</span></a>
               <button class="btn btn-red" type="button" data-trailer="img/patrulla-trailer.mp4?v=3" data-poster="img/patrulla-trailer-poster.jpg?v=3">Tráiler <span aria-hidden="true">&#9654;</span></button>
-            </div>
-          </div>
-        </article>
-        <article class="window game">
-          <div class="window-bar">
-            <span>LADRILLO.EXE</span>
-            <span class="window-buttons" aria-hidden="true"><i></i><i></i><i>×</i></span>
-          </div>
-          <a class="game-cover" href="juegos/ladrillazo/">
-            <img src="img/ladrillazo-cover.webp" alt="Una pelota blanca encendida rompe un muro de ladrillos rojos; por el hoyo se ven Machu Picchu, una pirámide maya, un obelisco, palmeras y casas de colores, y abajo una paleta con franjas rojas y blancas" loading="lazy" width="768" height="1152">
-            <img class="game-logo" src="img/ladrillazo-logo.webp" alt="LADRILLAZO" loading="lazy">
-          </a>
-          <div class="game-body">
-            <dl class="stats">
-              <div><dt>Género</dt><dd>Rompe muros arcade</dd></div>
-              <div><dt>Jugadores</dt><dd>01</dd></div>
-              <div><dt>Estado</dt><dd class="ready">¡Disponible!</dd></div>
-            </dl>
-            <p>Toca y rompe los muros de Latinoamérica. Con la paleta y la pelota bota ocho filas de ladrillos —los rojos valen más—, que la pelota se acelera a cada rato y, si se cuela hasta el techo, la paleta queda a la mitad. Cada muro es un país, de sur a norte: Valparaíso, el Obelisco, Colonia del Sacramento, el Pan de Azúcar, el salar de Uyuni, Machu Picchu, las Galápagos, Cartagena, el Malecón de La Habana y Chichén Itzá. Tabla de récords como en el arcade. En el celular la paleta sigue tu dedo y un toque saca la pelota; en el computador, teclado o mouse.</p>
-            <div class="game-actions">
-              <a class="btn btn-blue" href="juegos/ladrillazo/">Jugar <span aria-hidden="true">&gt;</span></a>
-              <button class="btn btn-red" type="button" data-trailer="img/ladrillazo-trailer.mp4" data-poster="img/ladrillazo-trailer-poster.jpg" data-vertical="1">Tráiler <span aria-hidden="true">&#9654;</span></button>
             </div>
           </div>
         </article>
@@ -268,6 +194,54 @@
         </article>
         <article class="window game">
           <div class="window-bar">
+            <span>GRAVEDAD.EXE</span>
+            <span class="window-buttons" aria-hidden="true"><i></i><i></i><i>×</i></span>
+          </div>
+          <a class="game-cover" href="juegos/gravedad-andina/">
+            <img src="img/gravedad-cover.webp" alt="Una nave blanca y roja en forma de cóndor dispara láseres sobre la superficie de un planeta con grietas de lava y cúpulas rojas alienígenas, bajo un sol dorado con cara inca, planetas de colores y una fortaleza roja" loading="lazy" width="1280" height="716">
+            <img class="game-logo game-logo-chico" src="img/gravedad-logo.webp" alt="GRAVEDAD ANDINA" loading="lazy">
+          </a>
+          <div class="game-body">
+            <dl class="stats">
+              <div><dt>Género</dt><dd>Shooter de gravedad</dd></div>
+              <div><dt>Jugadores</dt><dd>01</dd></div>
+              <div><dt>Estado</dt><dd class="ready">¡Disponible!</dd></div>
+            </dl>
+            <p>Toca y despega en el Cóndor. Unas fortalezas alienígenas ocuparon los planetas de tres sistemas andinos: Inti, Killa y Wenu. Esquiva el sol que te atrae, baja a cada planeta a pura gravedad y empuje, revienta los fortines que te disparan desde el suelo y recoge con el rayo tractor los estanques de litio, porque el combustible se acaba. Nueve planetas —el salar, el Licancabur, la mina de cobre, el Campo de Hielo, los fiordos, el desierto florido, Rapa Nui, las Torres del Paine y el bosque de alerces— y en cada sistema una Fortaleza Roja: dispara al reactor y escapa antes de que estalle. Después vienen universos con gravedad inversa y terreno invisible. En el celular deja el dedo en la pantalla: la nave apunta hacia él, empuja y dispara sola; con un segundo dedo prendes el escudo. Tabla de récords como en el arcade.</p>
+            <div class="game-actions">
+              <a class="btn btn-blue" href="juegos/gravedad-andina/">Jugar <span aria-hidden="true">&gt;</span></a>
+              <button class="btn btn-red" type="button" data-trailer="img/gravedad-trailer.mp4" data-poster="img/gravedad-trailer-poster.jpg">Tráiler <span aria-hidden="true">&#9654;</span></button>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <h3 class="games-cat" id="cat-defensa">Defensa</h3>
+      <div class="games">
+        <article class="window game">
+          <div class="window-bar">
+            <span>INVASORES.EXE</span>
+            <span class="window-buttons" aria-hidden="true"><i></i><i></i><i>×</i></span>
+          </div>
+          <a class="game-cover" href="juegos/invasores-de-atacama/">
+            <img src="img/invasores-cover.webp?v=2" alt="Una medusa de cuarzo, cóndores de cristal y piedras vivas con geoglifos bajan de noche sobre el desierto de Atacama, frente a un cañón láser que dispara junto a los observatorios" loading="lazy" width="768" height="1152">
+            <img class="game-logo" src="img/invasores-logo.webp?v=2" alt="INVASORES DE ATACAMA" loading="lazy">
+          </a>
+          <div class="game-body">
+            <dl class="stats">
+              <div><dt>Género</dt><dd>Shooter arcade</dd></div>
+              <div><dt>Jugadores</dt><dd>01</dd></div>
+              <div><dt>Estado</dt><dd class="ready">¡Disponible!</dd></div>
+            </dl>
+            <p>Toca la pantalla y defiende los cielos del norte. Una flota de criaturas de otro mundo —cóndores de cristal, chinchillas cósmicas y piedras vivas con geoglifos— baja en formación sobre el desierto de Atacama: mueve tu cañón láser, escóndete tras las pircas de piedra y derríbalos antes de que aterricen, que mientras menos quedan, más rápido bajan. Caza la medusa de cuarzo que cruza el cielo para sumar puntos extra. Cuatro noches en Atacama —los observatorios, el Valle de la Luna, el Gigante de Atacama y el llano de las antenas— y después la invasión sigue a la Luna, Marte, Europa y Titán, cada mundo con sus propias criaturas. En el celular solo deslizas el dedo: el cañón te sigue y dispara solo. Tabla de récords como en el arcade.</p>
+            <div class="game-actions">
+              <a class="btn btn-blue" href="juegos/invasores-de-atacama/">Jugar <span aria-hidden="true">&gt;</span></a>
+              <button class="btn btn-red" type="button" data-trailer="img/invasores-trailer.mp4?v=2" data-poster="img/invasores-trailer-poster.jpg?v=2" data-vertical="1">Tráiler <span aria-hidden="true">&#9654;</span></button>
+            </div>
+          </div>
+        </article>
+        <article class="window game">
+          <div class="window-bar">
             <span>CIELOS.EXE</span>
             <span class="window-buttons" aria-hidden="true"><i></i><i></i><i>×</i></span>
           </div>
@@ -285,6 +259,106 @@
             <div class="game-actions">
               <a class="btn btn-blue" href="juegos/cielos-de-america/">Jugar <span aria-hidden="true">&gt;</span></a>
               <button class="btn btn-red" type="button" data-trailer="img/cielos-trailer.mp4" data-poster="img/cielos-trailer-poster.jpg" data-vertical="1">Tráiler <span aria-hidden="true">&#9654;</span></button>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <h3 class="games-cat" id="cat-motor">Motos y autos</h3>
+      <div class="games">
+        <article class="window game">
+          <div class="window-bar">
+            <span>CROSS.EXE</span>
+            <span class="window-buttons" aria-hidden="true"><i></i><i></i><i>×</i></span>
+          </div>
+          <a class="game-cover" href="juegos/cross-country-engine/">
+            <img src="img/cross-cover.webp" alt="Un piloto de trial de rojo salta en caballito desde una rampa de madera sobre un bus de dos pisos y una fila de neumáticos, con público en el campo" loading="lazy" width="1280" height="714">
+            <img class="game-logo game-logo-chico" src="img/cross-logo.webp" alt="CROSS COUNTRY ENGINE" loading="lazy">
+          </a>
+          <div class="game-body">
+            <dl class="stats">
+              <div><dt>Género</dt><dd>Trial de motos</dd></div>
+              <div><dt>Jugadores</dt><dd>01</dd></div>
+              <div><dt>Estado</dt><dd class="ready">¡Disponible!</dd></div>
+            </dl>
+            <p>Toca la pantalla y arranca. Pantalla dividida: arriba vas tú y abajo el rival, por seis carreras de tres tramos con reloj: la campiña, el pueblo, el estadio, el puerto, el bosque y la ciudad de noche. Cada obstáculo se pasa a su manera: los neumáticos rápido, las vallas despacio, el muro en caballito, las mesas y las piletas de un salto, y los autos, el camión y el bus a fondo desde la rampa. Si te caes, el reloj corre al doble. En el celular se juega con los pulgares: el izquierdo apoyado acelera, atrás frena y arriba hace caballito; un toque a la derecha salta. También con el teclado.</p>
+            <div class="game-actions">
+              <a class="btn btn-blue" href="juegos/cross-country-engine/">Jugar <span aria-hidden="true">&gt;</span></a>
+              <button class="btn btn-red" type="button" data-trailer="img/cross-trailer.mp4?v=3" data-poster="img/cross-trailer-poster.jpg?v=3">Tráiler <span aria-hidden="true">&#9654;</span></button>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <h3 class="games-cat" id="cat-aventura">Aventura</h3>
+      <div class="games">
+        <article class="window game">
+          <div class="window-bar">
+            <span>AMAZONAS.EXE</span>
+            <span class="window-buttons" aria-hidden="true"><i></i><i></i><i>×</i></span>
+          </div>
+          <a class="game-cover" href="juegos/operacion-amazonas/">
+            <img src="img/amazonas-cover.webp" alt="Un comando de bandana roja corre por un puente de madera en la selva, con un templo y el sol del atardecer de fondo" loading="lazy" width="768" height="1151">
+            <img class="game-logo" src="img/amazonas-logo.webp" alt="OPERACIÓN AMAZONAS" loading="lazy">
+          </a>
+          <div class="game-body">
+            <dl class="stats">
+              <div><dt>Género</dt><dd>Acción arcade</dd></div>
+              <div><dt>Jugadores</dt><dd>01</dd></div>
+              <div><dt>Estado</dt><dd class="ready">¡Disponible!</dd></div>
+            </dl>
+            <p>Toca la pantalla y entra a la selva. Un comando solo contra los Jaguares Negros: cruza los ríos, vuela las chozas con granadas, rescata a los científicos amarrados y vence la oleada en la puerta de cada campamento. Cuatro etapas, de la orilla del río al templo perdido, con tabla de récords como en el arcade. En el celular se juega con un dedo: arrastra para moverte y dispara solo; la granada con el ícono o un segundo dedo.</p>
+            <div class="game-actions">
+              <a class="btn btn-blue" href="juegos/operacion-amazonas/">Jugar <span aria-hidden="true">&gt;</span></a>
+              <button class="btn btn-red" type="button" data-trailer="img/amazonas-trailer.mp4?v=2" data-poster="img/amazonas-trailer-poster.jpg?v=2" data-vertical="1">Tráiler <span aria-hidden="true">&#9654;</span></button>
+            </div>
+          </div>
+        </article>
+        <article class="window game">
+          <div class="window-bar">
+            <span>RESCATE.EXE</span>
+            <span class="window-buttons" aria-hidden="true"><i></i><i></i><i>×</i></span>
+          </div>
+          <a class="game-cover" href="juegos/rescate-minero/">
+            <img src="img/rescate-cover.webp" alt="Un rescatista de overol naranjo y casco blanco con mochila hélice vuela por un pique de mina disparando un láser rojo a una araña gigante colgada de su hilo, junto a una pared de lava, un farol de bronce y un minero atrapado que pide ayuda" loading="lazy" width="1280" height="716">
+            <img class="game-logo game-logo-chico" src="img/rescate-logo.webp" alt="RESCATE MINERO" loading="lazy">
+          </a>
+          <div class="game-body">
+            <dl class="stats">
+              <div><dt>Género</dt><dd>Rescate en la mina</dd></div>
+              <div><dt>Jugadores</dt><dd>01</dd></div>
+              <div><dt>Estado</dt><dd class="ready">¡Disponible!</dd></div>
+            </dl>
+            <p>Toca y baja al rescate. Hubo derrumbes en cinco minas de Chile —El Teniente, San José, el Chiflón del Diablo en Lota, Chuquicamata y la azufrera de Aucanquilcha— y al fondo de cada galería hay un minero atrapado. Vuela por los piques con la mochila hélice, revienta los tabiques de madera con dinamita, quema arañas, murciélagos y polillas con el láser del casco, cuídate de las culebras que salen de la roca, de las vetas de lava y del agua con tentáculos, y llega antes de que se acabe la energía. Veinte niveles cada vez más hondos y puedes elegir en qué mina empezar. En el celular deja el dedo a un lado para caminar, desliza hacia arriba para la hélice y el láser dispara solo; la dinamita va deslizando hacia abajo, con el ícono o con un segundo dedo. Tabla de récords como en el arcade.</p>
+            <div class="game-actions">
+              <a class="btn btn-blue" href="juegos/rescate-minero/">Jugar <span aria-hidden="true">&gt;</span></a>
+              <button class="btn btn-red" type="button" data-trailer="img/rescate-trailer.mp4" data-poster="img/rescate-trailer-poster.jpg">Tráiler <span aria-hidden="true">&#9654;</span></button>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <h3 class="games-cat" id="cat-habilidad">Habilidad</h3>
+      <div class="games">
+        <article class="window game">
+          <div class="window-bar">
+            <span>LADRILLO.EXE</span>
+            <span class="window-buttons" aria-hidden="true"><i></i><i></i><i>×</i></span>
+          </div>
+          <a class="game-cover" href="juegos/ladrillazo/">
+            <img src="img/ladrillazo-cover.webp" alt="Una pelota blanca encendida rompe un muro de ladrillos rojos; por el hoyo se ven Machu Picchu, una pirámide maya, un obelisco, palmeras y casas de colores, y abajo una paleta con franjas rojas y blancas" loading="lazy" width="768" height="1152">
+            <img class="game-logo" src="img/ladrillazo-logo.webp" alt="LADRILLAZO" loading="lazy">
+          </a>
+          <div class="game-body">
+            <dl class="stats">
+              <div><dt>Género</dt><dd>Rompe muros arcade</dd></div>
+              <div><dt>Jugadores</dt><dd>01</dd></div>
+              <div><dt>Estado</dt><dd class="ready">¡Disponible!</dd></div>
+            </dl>
+            <p>Toca y rompe los muros de Latinoamérica. Con la paleta y la pelota bota ocho filas de ladrillos —los rojos valen más—, que la pelota se acelera a cada rato y, si se cuela hasta el techo, la paleta queda a la mitad. Cada muro es un país, de sur a norte: Valparaíso, el Obelisco, Colonia del Sacramento, el Pan de Azúcar, el salar de Uyuni, Machu Picchu, las Galápagos, Cartagena, el Malecón de La Habana y Chichén Itzá. Tabla de récords como en el arcade. En el celular la paleta sigue tu dedo y un toque saca la pelota; en el computador, teclado o mouse.</p>
+            <div class="game-actions">
+              <a class="btn btn-blue" href="juegos/ladrillazo/">Jugar <span aria-hidden="true">&gt;</span></a>
+              <button class="btn btn-red" type="button" data-trailer="img/ladrillazo-trailer.mp4" data-poster="img/ladrillazo-trailer-poster.jpg" data-vertical="1">Tráiler <span aria-hidden="true">&#9654;</span></button>
             </div>
           </div>
         </article>
@@ -310,52 +384,6 @@
             </div>
           </div>
         </article>
-        <article class="window game">
-          <div class="window-bar">
-            <span>GRAVEDAD.EXE</span>
-            <span class="window-buttons" aria-hidden="true"><i></i><i></i><i>×</i></span>
-          </div>
-          <a class="game-cover" href="juegos/gravedad-andina/">
-            <img src="img/gravedad-cover.webp" alt="Una nave blanca y roja en forma de cóndor dispara láseres sobre la superficie de un planeta con grietas de lava y cúpulas rojas alienígenas, bajo un sol dorado con cara inca, planetas de colores y una fortaleza roja" loading="lazy" width="1280" height="716">
-            <img class="game-logo game-logo-chico" src="img/gravedad-logo.webp" alt="GRAVEDAD ANDINA" loading="lazy">
-          </a>
-          <div class="game-body">
-            <dl class="stats">
-              <div><dt>Género</dt><dd>Shooter de gravedad</dd></div>
-              <div><dt>Jugadores</dt><dd>01</dd></div>
-              <div><dt>Estado</dt><dd class="ready">¡Disponible!</dd></div>
-            </dl>
-            <p>Toca y despega en el Cóndor. Unas fortalezas alienígenas ocuparon los planetas de tres sistemas andinos: Inti, Killa y Wenu. Esquiva el sol que te atrae, baja a cada planeta a pura gravedad y empuje, revienta los fortines que te disparan desde el suelo y recoge con el rayo tractor los estanques de litio, porque el combustible se acaba. Nueve planetas —el salar, el Licancabur, la mina de cobre, el Campo de Hielo, los fiordos, el desierto florido, Rapa Nui, las Torres del Paine y el bosque de alerces— y en cada sistema una Fortaleza Roja: dispara al reactor y escapa antes de que estalle. Después vienen universos con gravedad inversa y terreno invisible. En el celular deja el dedo en la pantalla: la nave apunta hacia él, empuja y dispara sola; con un segundo dedo prendes el escudo. Tabla de récords como en el arcade.</p>
-            <div class="game-actions">
-              <a class="btn btn-blue" href="juegos/gravedad-andina/">Jugar <span aria-hidden="true">&gt;</span></a>
-              <button class="btn btn-red" type="button" data-trailer="img/gravedad-trailer.mp4" data-poster="img/gravedad-trailer-poster.jpg">Tráiler <span aria-hidden="true">&#9654;</span></button>
-            </div>
-          </div>
-        </article>
-
-        <article class="window game">
-          <div class="window-bar">
-            <span>RESCATE.EXE</span>
-            <span class="window-buttons" aria-hidden="true"><i></i><i></i><i>×</i></span>
-          </div>
-          <a class="game-cover" href="juegos/rescate-minero/">
-            <img src="img/rescate-cover.webp" alt="Un rescatista de overol naranjo y casco blanco con mochila hélice vuela por un pique de mina disparando un láser rojo a una araña gigante colgada de su hilo, junto a una pared de lava, un farol de bronce y un minero atrapado que pide ayuda" loading="lazy" width="1280" height="716">
-            <img class="game-logo game-logo-chico" src="img/rescate-logo.webp" alt="RESCATE MINERO" loading="lazy">
-          </a>
-          <div class="game-body">
-            <dl class="stats">
-              <div><dt>Género</dt><dd>Rescate en la mina</dd></div>
-              <div><dt>Jugadores</dt><dd>01</dd></div>
-              <div><dt>Estado</dt><dd class="ready">¡Disponible!</dd></div>
-            </dl>
-            <p>Toca y baja al rescate. Hubo derrumbes en cinco minas de Chile —El Teniente, San José, el Chiflón del Diablo en Lota, Chuquicamata y la azufrera de Aucanquilcha— y al fondo de cada galería hay un minero atrapado. Vuela por los piques con la mochila hélice, revienta los tabiques de madera con dinamita, quema arañas, murciélagos y polillas con el láser del casco, cuídate de las culebras que salen de la roca, de las vetas de lava y del agua con tentáculos, y llega antes de que se acabe la energía. Veinte niveles cada vez más hondos y puedes elegir en qué mina empezar. En el celular deja el dedo a un lado para caminar, desliza hacia arriba para la hélice y el láser dispara solo; la dinamita va deslizando hacia abajo, con el ícono o con un segundo dedo. Tabla de récords como en el arcade.</p>
-            <div class="game-actions">
-              <a class="btn btn-blue" href="juegos/rescate-minero/">Jugar <span aria-hidden="true">&gt;</span></a>
-              <button class="btn btn-red" type="button" data-trailer="img/rescate-trailer.mp4" data-poster="img/rescate-trailer-poster.jpg">Tráiler <span aria-hidden="true">&#9654;</span></button>
-            </div>
-          </div>
-        </article>
-
         <article class="window game game-next">
           <div class="window-bar">
             <span>PROXIMO.EXE</span>
@@ -378,6 +406,7 @@
           </div>
         </article>
       </div>
+
     </section>
 
     <!-- Estudio -->
