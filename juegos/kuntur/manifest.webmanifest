@@ -1,0 +1,24 @@
+{
+  "name": "Kuntur — Horizonte 64",
+  "short_name": "Kuntur",
+  "description": "La nave cóndor rompe bloques de la Patagonia a Teotihuacán, junta cápsulas de poder y enfrenta al Amaru. Arcade para jugar con un dedo. Horizonte 64 Software. Juega gratis.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "fullscreen",
+  "orientation": "portrait",
+  "background_color": "#111111",
+  "theme_color": "#16123a",
+  "lang": "es",
+  "icons": [
+    {
+      "src": "TemplateData/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "TemplateData/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
